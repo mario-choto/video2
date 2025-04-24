@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Call + Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body { font-family: sans-serif; padding: 10px; max-width: 600px; margin: auto; }
+      input, button, textarea { font-size: 16px; padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+      .user { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+      video { width: 100%; max-width: 100%; margin: 10px 0; border-radius: 8px; display: none; }
+      #incomingCall, #inCallControls, #chatArea { display: none; text-align: center; }
+      #messages { border: 1px solid #ccc; padding: 10px; max-height: 200px; overflow-y: scroll; text-align: left; }
+    </style>
+  </head>
+  <body>
+    <h2>Lobby</h2>
+    <input type="text" id="username" placeholder="Your name">
+    <button id="joinBtn">Join Lobby</button>
+
+    <div id="userList"></div>
+
+    <div id="incomingCall">
+      <p id="callFrom"></p>
+      <button id="acceptBtn">Accept</button>
+      <button id="rejectBtn">Reject</button>
+    </div>
+
+    <video id="localVideo" autoplay muted playsinline></video>
+    <video id="remoteVideo" autoplay playsinline></video>
+
+    <div id="inCallControls">
+      <button id="hangupBtn">Hang Up</button>
+    </div>
+
+    <div id="chatArea">
+      <div id="messages"></div>
+      <input type="text" id="msgInput" placeholder="Type a message">
+      <button onclick="sendMessage()">Send</button>
+      <input type="file" id="imageInput" accept="image/*">
+      <button onclick="snapPhoto()">📸 Snapshot</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="enhanced-ui.js"></script>
+  </body>
+</html>
